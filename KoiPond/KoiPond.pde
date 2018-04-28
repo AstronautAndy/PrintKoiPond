@@ -16,33 +16,33 @@ void setup() {
 }
 
 void draw() {
- clear();
+ background(0);
  //f.display();
  //f.updatePosition();
  for(int i=0; i<fishSet.length;i++){
    fishSet[i].render();
    fishSet[i].updatePosition();
  }
+ 
 }
 
 class fish {
-  PVector pos; PVector currVelocity ;
+  int xPos; int yPos; int xVel;
   PImage kFishImage;
   
   fish(int x, int y){
    kFishImage = loadImage("./GreenFish300.png");
-   pos = new PVector();   currVelocity = new PVector();
-   pos.x = x;   pos.y = y;
-   currVelocity.x = random(-2,-1);   currVelocity.y = 0;
+   xPos = x;   yPos = y;
+   xVel = (int) random(-2,-1);
   }
   
   void updatePosition(){
-    pos = pos.add(currVelocity);
-    if(pos.x <= -kFishImage.width ) pos.x = width;
+    xPos += xVel;
+    if(xPos <= -kFishImage.width ) xPos = width;
   }
   
   void render() {    
-    image(kFishImage,pos.x,pos.y);
+    image(kFishImage,xPos,yPos);
   }
   
 }
